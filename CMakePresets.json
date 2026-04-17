@@ -7,17 +7,12 @@
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build",
       "cacheVariables": {
-        "CAMELLIA_REGISTER_PACKAGE": "OFF"
-      }
-    },
-    {
-      "name": "export",
-      "displayName": "Export",
-      "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build",
-      "cacheVariables": {
-        "CAMELLIA_REGISTER_PACKAGE": "ON",
-        "CMAKE_EXPORT_PACKAGE_REGISTRY": "ON"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+
+        "CAMELLIA_REGISTER_PACKAGE": "OFF",
+
+        "CMAKE_PREFIX_PATH": "$env{HOME}/.local",
+        "CMAKE_INSTALL_PREFIX": "$env{HOME}/.local"
       }
     }
   ]

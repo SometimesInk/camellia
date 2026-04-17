@@ -24,4 +24,6 @@ extern cam_err_t cam_err_get();
     return CAM_FAILURE;                                                        \
   } while (0)
 
+#define CAM_ERR_RETURN_SUCCESS() CAM_ERR_RETURN(CAM_ERR_SUCCESS)
+
 #endif /* CAMELLIA__ERR_ERR_H__ */

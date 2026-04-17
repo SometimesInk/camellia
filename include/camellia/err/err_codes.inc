@@ -51,7 +51,7 @@ X(CAM_ERR_TOO_MANY_ARGS)
  */
 X(CAM_ERR_PERM_DENIED)
 /**
- * @brief Invalid argument.
+ * @brief Invalid argument. Perhaps `CAM_NULL`.
  */
 X(CAM_ERR_INV_ARG)
 /**

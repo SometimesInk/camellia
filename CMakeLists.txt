@@ -94,14 +94,9 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/camelliaConfig.cmake"
               "${CMAKE_CURRENT_BINARY_DIR}/camelliaConfigVersion.cmake"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camellia)
 
-# Export
-if(CAMELLIA_REGISTER_PACKAGE)
-  export(
-    EXPORT camelliaTargets
-    NAMESPACE camellia::
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/camelliaTargets.cmake")
-  export(PACKAGE camellia)
-endif()
+# Export if(CAMELLIA_REGISTER_PACKAGE) export( EXPORT camelliaTargets NAMESPACE
+# camellia:: FILE "${CMAKE_CURRENT_BINARY_DIR}/camelliaTargets.cmake")
+# export(PACKAGE camellia) endif()
 
 # Testing
 enable_testing()
