@@ -1,17 +1,35 @@
 cmake_minimum_required(VERSION 3.23)
 
+set(version 0.1.0)
+
+option(CAMELLIA_REGISTER_PACKAGE
+       "Register camellia in the CMake user package registry." OFF)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project(
   camellia
-  VERSION 0.0.0
+  VERSION ${version}
   LANGUAGES C)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
 add_library(camellia)
 
 target_sources(
   camellia
-  PRIVATE src/camellia/camellia.c
-  PUBLIC FILE_SET HEADERS BASE_DIRS include FILES include/camellia/camellia.h)
+  PRIVATE src/camellia/camellia.c src/camellia/test/test.c
+          src/camellia/err/err.c
+  PUBLIC FILE_SET
+         HEADERS
+         BASE_DIRS
+         include
+         FILES
+         include/camellia/err/err.h
+         include/camellia/err/err_codes.inc
+         include/camellia/test/test.h
+         include/camellia/camellia.h)
 
 target_include_directories(
   camellia
@@ -43,6 +61,46 @@ if(BUILD_DOCUMENTATION)
   doxygen_add_docs(
     docs ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/src
     COMMENT "Generating API documentation with Doxygen" VERBATIM)
+endif()
+
+# Package version file
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/camelliaConfigVersion.cmake"
+  VERSION "${version}"
+  COMPATIBILITY AnyNewerVersion)
+
+# Installing
+install(
+  TARGETS camellia
+  EXPORT camelliaTargets
+  FILE_SET HEADERS
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+configure_package_config_file(
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/camelliaConfig.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/camelliaConfig.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camellia)
+
+install(
+  EXPORT camelliaTargets
+  FILE camelliaTargets.cmake
+  NAMESPACE camellia::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camellia)
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/camelliaConfig.cmake"
+              "${CMAKE_CURRENT_BINARY_DIR}/camelliaConfigVersion.cmake"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/camellia)
+
+# Export
+if(CAMELLIA_REGISTER_PACKAGE)
+  export(
+    EXPORT camelliaTargets
+    NAMESPACE camellia::
+    FILE "${CMAKE_CURRENT_BINARY_DIR}/camelliaTargets.cmake")
+  export(PACKAGE camellia)
 endif()
 
 # Testing
