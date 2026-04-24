@@ -3,6 +3,7 @@
 
 #include <camellia/camellia.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef cam_out_t cam_test_result_t;
 
@@ -38,7 +39,7 @@ extern cam_test_context_t cam_test_context;
 extern void cam_test_start();
 extern void cam_test_stop();
 
-#define CAM_TEST_RETURN(v) return v;
+#define CAM_TEST_RETURN(v) return (v);
 
 #define CAM_TEST_STOP_SUCCESS()                                                \
   do {                                                                         \
@@ -56,7 +57,7 @@ extern void cam_test_stop();
 
 #define CAM_TEST_ASSERT_NOT(expr)                                              \
   do {                                                                         \
-    if (expr) {                                                                \
+    if ((expr)) {                                                              \
       cam_test_stop();                                                         \
       CAM_TEST_RETURN(CAM_TEST_FAILURE)                                        \
     }                                                                          \
@@ -64,22 +65,38 @@ extern void cam_test_stop();
 
 #define CAM_TEST_ASSERT_PREV_ERR(code)                                         \
   do {                                                                         \
-    CAM_TEST_ASSERT(cam_err_get() == code);                                    \
+    CAM_TEST_ASSERT(cam_err_get() == (code));                                  \
   } while (0)
 
 #define CAM_TEST_ASSERT_PREV_ERR_NOT(code)                                     \
   do {                                                                         \
-    CAM_TEST_ASSERT(cam_err_get() != code);                                    \
+    CAM_TEST_ASSERT(cam_err_get() != (code));                                  \
   } while (0)
 
 #define CAM_TEST_ASSERT_SUCCESS(expr)                                          \
   do {                                                                         \
-    CAM_TEST_ASSERT(expr == CAM_SUCCESS);                                      \
+    CAM_TEST_ASSERT((expr) == CAM_SUCCESS);                                    \
   } while (0)
 
 #define CAM_TEST_ASSERT_FAILURE(expr)                                          \
   do {                                                                         \
-    CAM_TEST_ASSERT(expr == CAM_FAILURE);                                      \
+    CAM_TEST_ASSERT((expr) == CAM_FAILURE);                                    \
+  } while (0)
+
+#define CAM_TEST_ASSERT_NULL(expr)                                             \
+  do {                                                                         \
+    CAM_TEST_ASSERT((expr) == CAM_NULL);                                       \
+  } while (0)
+
+#define CAM_TEST_ASSERT_NOT_NULL(expr)                                         \
+  do {                                                                         \
+    CAM_TEST_ASSERT((expr) != CAM_NULL);                                       \
+  } while (0)
+
+#define CAM_TEST_ASSERT_NULL_TERMINATED(expr, capacity)                        \
+  do {                                                                         \
+    cam_size_t n__ = strnlen((expr), (capacity));                              \
+    CAM_TEST_ASSERT(n__ < (capacity));                                         \
   } while (0)
 
 #endif /* CAMELLIA__TEST_TEST_H__ */

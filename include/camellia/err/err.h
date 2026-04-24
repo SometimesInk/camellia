@@ -7,6 +7,9 @@ typedef enum {
 #define X(err) err,
 #include <camellia/err/err_codes.inc>
 #undef X
+  /**
+   * @brief Length of `cam_err_t` enum.
+   */
   CAM_ERR_LEN,
 } cam_err_t;
 
@@ -25,5 +28,22 @@ extern cam_err_t cam_err_get();
   } while (0)
 
 #define CAM_ERR_RETURN_SUCCESS() CAM_ERR_RETURN(CAM_ERR_SUCCESS)
+
+/**
+ * @brief Checks `expr`, if false, it throws `err` through `CAM_ERR_RETURN`.
+ */
+#define CAM_ERR_CHECK(expr, err)                                               \
+  do {                                                                         \
+    if (!(expr)) {                                                             \
+      CAM_ERR_RETURN((err));                                                   \
+    }                                                                          \
+  } while (0)
+
+#define CAM_ERR_CHECK_SUCCESS(expr, err)                                       \
+  do {                                                                         \
+    if (!((expr) == CAM_SUCCESS)) {                                            \
+      CAM_ERR_RETURN((err));                                                   \
+    }                                                                          \
+  } while (0)
 
 #endif /* CAMELLIA__ERR_ERR_H__ */

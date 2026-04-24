@@ -47,6 +47,10 @@ X(CAM_ERR_NO_DEV)
  */
 X(CAM_ERR_TOO_MANY_ARGS)
 /**
+ * @brief Not enough arguments.
+ */
+X(CAM_ERR_NOT_ENOUGH_ARGS)
+/**
  * @brief Permission denied.
  */
 X(CAM_ERR_PERM_DENIED)
