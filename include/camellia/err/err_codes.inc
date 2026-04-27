@@ -70,3 +70,7 @@ X(CAM_ERR_FILE_TOO_LARGE)
  * @brief Out of range.
  */
 X(CAM_ERR_RANGE)
+/**
+ * @brief Unexpected token.
+ */
+X(CAM_ERR_INV_TOKEN)

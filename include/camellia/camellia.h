@@ -1,6 +1,7 @@
 #ifndef CAMELLIA__CAMELLIA_H__
 #define CAMELLIA__CAMELLIA_H__
 
+#include <camellia/type/int.h>
 #include <stddef.h>
 #include <string.h>
 
@@ -19,6 +20,8 @@ typedef struct {
   cam_size_t len;
   cam_cptr_t str;
 } cam_str_t;
+
+typedef cam_type_sint32_t cam_int_t;
 
 extern cam_str_t cam_create_str(const cam_cptr_t cptr);
 

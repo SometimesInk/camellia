@@ -20,12 +20,14 @@ add_library(camellia)
 target_sources(
   camellia
   PRIVATE src/camellia/camellia.c src/camellia/test/test.c
-          src/camellia/err/err.c
+          src/camellia/err/err.c src/camellia/type/dynamic_array.c
   PUBLIC FILE_SET
          HEADERS
          BASE_DIRS
          include
          FILES
+         include/camellia/type/dynamic_array.h
+         include/camellia/type/int.h
          include/camellia/err/err.h
          include/camellia/err/err_codes.inc
          include/camellia/test/test.h
