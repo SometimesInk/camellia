@@ -36,9 +36,23 @@ cam_test_result_t main(void) {
   printf("Added elements.\n");
 
   // Length
-  cam_size_t len = cam_type_len_dyn_arr(arr);
+  cam_size_t len = cam_type_len_dyn_arr(&arr);
   printf("Length check %lu.\n", len);
   CAM_TEST_ASSERT(len == 5);
+
+  // Removing elements
+  CAM_TEST_ASSERT_SUCCESS(cam_type_pop_dyn_arr(&arr));
+  CAM_TEST_ASSERT_SUCCESS(cam_type_pop_dyn_arr(&arr));
+  CAM_TEST_ASSERT_SUCCESS(cam_type_pop_dyn_arr(&arr));
+  printf("Removed elements.\n");
+
+  // Length
+  len = cam_type_len_dyn_arr(&arr);
+  printf("Length check %lu.\n", len);
+  CAM_TEST_ASSERT(len == 2);
+
+  // Get
+  CAM_TEST_ASSERT(*((int *)cam_type_get_dyn_arr(&arr, 1)) == b);
 
   CAM_TEST_STOP_SUCCESS();
 }

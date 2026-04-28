@@ -26,6 +26,7 @@ target_sources(
          BASE_DIRS
          include
          FILES
+         include/camellia/type/linked_list.h
          include/camellia/type/dynamic_array.h
          include/camellia/type/int.h
          include/camellia/err/err.h
