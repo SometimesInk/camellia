@@ -46,4 +46,10 @@ extern cam_err_t cam_err_get();
     }                                                                          \
   } while (0)
 
+#define CAM_ERR_FAIL_ON_FAIL(expr)                                             \
+  do {                                                                         \
+    if (!((expr) == CAM_SUCCESS))                                              \
+      return CAM_FAILURE;                                                      \
+  } while (0)
+
 #endif /* CAMELLIA__ERR_ERR_H__ */

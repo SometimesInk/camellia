@@ -8,14 +8,18 @@ cam_size_t cam_type_len_dyn_arr(const cam_type_dyn_arr_t *arr) {
   return arr->arr_used_size / arr->ele_size;
 }
 
-cam_type_dyn_arr_t cam_type_create_dyn_arr(const cam_size_t ele_size,
-                                           const cam_size_t initial_len) {
-  cam_size_t arr_size = ele_size * initial_len;
-  cam_type_dyn_arr_t arr = {.ele_size = ele_size,
-                            .arr_used_size = 0,
-                            .arr_size = arr_size,
-                            .data = malloc(arr_size)};
-  return arr;
+cam_out_t cam_type_create_dyn_arr(cam_type_dyn_arr_t *arr,
+                                  const cam_size_t ele_size,
+                                  const cam_size_t initial_size) {
+  cam_size_t arr_size = ele_size * initial_size;
+
+  arr->ele_size = ele_size;
+  arr->arr_used_size = 0;
+  arr->arr_size = arr_size;
+  arr->data = malloc(arr_size);
+  CAM_ERR_CHECK(arr->data != CAM_NULL, CAM_ERR_MEM_ALLOC);
+
+  CAM_ERR_RETURN_SUCCESS();
 }
 
 cam_out_t cam_type_push_dyn_arr(cam_type_dyn_arr_t *arr, const void *value) {

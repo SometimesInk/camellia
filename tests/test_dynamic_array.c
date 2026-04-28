@@ -18,8 +18,7 @@ cam_test_result_t main(void) {
   cam_test_start();
 
   // Create
-  arr = cam_type_create_dyn_arr(sizeof(int), 3);
-  CAM_TEST_ASSERT_NOT_NULL(arr.data);
+  CAM_TEST_ASSERT_SUCCESS(cam_type_create_dyn_arr(&arr, sizeof(int), 3));
   printf("Created array.\n");
 
   // Add element
