@@ -21,6 +21,7 @@ target_sources(
   camellia
   PRIVATE src/camellia/camellia.c src/camellia/test/test.c
           src/camellia/err/err.c src/camellia/type/dynamic_array.c
+          src/camellia/type/string.c
   PUBLIC FILE_SET
          HEADERS
          BASE_DIRS
@@ -29,6 +30,7 @@ target_sources(
          include/camellia/type/linked_list.h
          include/camellia/type/dynamic_array.h
          include/camellia/type/int.h
+         include/camellia/type/string.h
          include/camellia/err/err.h
          include/camellia/err/err_codes.inc
          include/camellia/test/test.h

@@ -7,8 +7,8 @@ cam_str_t cam_err_to_string[CAM_ERR_LEN] = {
 #undef X
 };
 
-cam_err_t cam_err_prev;
+cam_err_t cam_err_prerr = CAM_ERR_NONE;
 
-void cam_err_set(cam_err_t err) { cam_err_prev = err; }
+void cam_err_set(cam_err_t err) { cam_err_prerr = err; }
 
-cam_err_t cam_err_get() { return cam_err_prev; }
+cam_err_t cam_err_get() { return cam_err_prerr; }

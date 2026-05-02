@@ -29,7 +29,7 @@ cam_out_t cam_type_push_dyn_arr(cam_type_dyn_arr_t *arr, const void *value) {
   if (arr->arr_used_size >= arr->arr_size) {
     arr->arr_size *= 2;
     arr->data = realloc(arr->data, arr->arr_size * arr->ele_size);
-    CAM_ERR_CHECK(arr->data != CAM_NULL, CAM_ERR_NULL_PTR);
+    CAM_ERR_CHECK(arr->data != CAM_NULL, CAM_ERR_MEM_ALLOC);
   }
 
   (void)memcpy(arr->data + (cam_type_len_dyn_arr(arr) * arr->ele_size), value,
@@ -59,5 +59,6 @@ void *cam_type_get_dyn_arr(const cam_type_dyn_arr_t *arr,
     cam_err_set(CAM_ERR_NULL_PTR);
     return CAM_NULL;
   }
+  cam_err_set(CAM_ERR_SUCCESS);
   return arr->data + (index * arr->ele_size);
 }

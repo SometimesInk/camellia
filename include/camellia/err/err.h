@@ -15,6 +15,11 @@ typedef enum {
 
 extern cam_str_t cam_err_to_string[CAM_ERR_LEN];
 
+/**
+ * @deprecated TODO: Look into alternatives to a global variable.
+ */
+extern cam_err_t cam_err_prerr;
+
 extern void cam_err_set(cam_err_t err);
 
 extern cam_err_t cam_err_get();
