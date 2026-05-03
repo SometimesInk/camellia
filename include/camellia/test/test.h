@@ -3,7 +3,6 @@
 
 #include <camellia/camellia.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef cam_out_t cam_test_result_t;
 
