@@ -5,6 +5,10 @@
 
 #include <camellia/camellia.h>
 
+/**
+ * @brief Gets the substring of `str` from index `start` to `end`.
+ * @warm This is inclusive, thus from the range [start, end].
+ */
 extern cam_out_t cam_type_substring(cam_str_t *sub, const cam_cptr_t str,
                                     const cam_size_t start,
                                     const cam_size_t end);
