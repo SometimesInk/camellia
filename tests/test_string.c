@@ -42,5 +42,9 @@ cam_test_result_t main(void) {
   printf("Substring3: %s\n", substring3.str);
   CAM_TEST_ASSERT(strcmp(string, "ething."));
 
+  // Match
+  CAM_TEST_ASSERT(cam_type_str_match(string, "Something!", 5) == CAM_SUCCESS);
+  CAM_TEST_ASSERT(cam_type_str_match(string, "Something!", 10) == CAM_FAILURE);
+
   CAM_TEST_STOP_SUCCESS();
 }

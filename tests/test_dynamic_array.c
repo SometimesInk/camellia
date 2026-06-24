@@ -12,7 +12,7 @@ cam_type_dyn_arr_t arr;
     cam_type_free_dyn_arr(&arr);                                               \
     printf("Last err: %u.", cam_err_get());                                    \
     return v;                                                                  \
-  } while (0);
+  } while (0)
 
 cam_test_result_t main(void) {
   cam_test_start();

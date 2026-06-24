@@ -4,9 +4,22 @@
 #include <camellia/camellia.h>
 
 typedef struct {
+  /**
+   * @brief Size allocated per element.
+   */
   cam_size_t ele_size;
+  /**
+   * @brief Used size in total array size.
+   */
   cam_size_t arr_used_size;
+  /**
+   * @brief Amount of memory allocated to the array.
+   */
   cam_size_t arr_size;
+  /**
+   * @brief Pointer to the data held by the array.
+   * @warn Heap allocated.
+   */
   void *data;
 } cam_type_dyn_arr_t;
 

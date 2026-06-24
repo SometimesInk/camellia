@@ -38,19 +38,22 @@ extern cam_test_context_t cam_test_context;
 extern void cam_test_start();
 extern void cam_test_stop();
 
-#define CAM_TEST_RETURN(v) return (v);
+#define CAM_TEST_RETURN(v)                                                     \
+  do {                                                                         \
+    return (v);                                                                \
+  } while (0)
 
 #define CAM_TEST_STOP_SUCCESS()                                                \
   do {                                                                         \
     cam_test_stop();                                                           \
-    CAM_TEST_RETURN(CAM_TEST_SUCCESS)                                          \
+    CAM_TEST_RETURN(CAM_TEST_SUCCESS);                                         \
   } while (0)
 
 #define CAM_TEST_ASSERT(expr)                                                  \
   do {                                                                         \
     if (!(expr)) {                                                             \
       cam_test_stop();                                                         \
-      CAM_TEST_RETURN(CAM_TEST_FAILURE)                                        \
+      CAM_TEST_RETURN(CAM_TEST_FAILURE);                                       \
     }                                                                          \
   } while (0)
 
@@ -58,7 +61,7 @@ extern void cam_test_stop();
   do {                                                                         \
     if ((expr)) {                                                              \
       cam_test_stop();                                                         \
-      CAM_TEST_RETURN(CAM_TEST_FAILURE)                                        \
+      CAM_TEST_RETURN(CAM_TEST_FAILURE);                                       \
     }                                                                          \
   } while (0)
 
