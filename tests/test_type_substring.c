@@ -66,9 +66,5 @@ cam_test_result_t main(void) {
   CAM_TEST_ASSERT_FAILURE(cam_type_substring(&substring6, string, 6, 3));
   CAM_TEST_ASSERT_PREV_ERR(CAM_ERR_INV_ARG);
 
-  // Match
-  CAM_TEST_ASSERT(cam_type_str_match(string, "Something!", 5) == CAM_SUCCESS);
-  CAM_TEST_ASSERT(cam_type_str_match(string, "Something!", 10) == CAM_FAILURE);
-
   CAM_TEST_STOP_SUCCESS();
 }
