@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.23)
 
 set(version 0.1.0)
 
-option(CAMELLIA_REGISTER_PACKAGE
-       "Register camellia in the CMake user package registry." OFF)
+# option(CAMELLIA_REGISTER_PACKAGE
+#        "Register camellia in the CMake user package registry." OFF)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
