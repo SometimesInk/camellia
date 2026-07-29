@@ -16,27 +16,15 @@ typedef cam_out_t cam_test_result_t;
 #define CAM_TEST_SUCCESS ((cam_test_result_t)EXIT_SUCCESS)
 
 /**
- * @brief Whether there is a test running or not.
+ * @deprecated Prefer defining CAM_TEST rather than using cam_test_start &
+ * cam_test_stop.
  */
-typedef enum {
-  /**
-   * @brief There is a test running.
-   */
-  CAM_TEST_STATE_TESTING,
-  /**
-   * @brief There is no test running.
-   */
-  CAM_TEST_STATE_NOT_TESTING
-} cam_test_state_t;
+#define cam_test_start()
 
-typedef struct {
-  cam_test_state_t state;
-} cam_test_context_t;
-
-extern cam_test_context_t cam_test_context;
-
-extern void cam_test_start();
-extern void cam_test_stop();
+/**
+ * @deprecated See cam_test_start();
+ */
+#define cam_test_stop()
 
 #define CAM_TEST_RETURN(v)                                                     \
   do {                                                                         \

@@ -1,11 +1,11 @@
+#define CAM_TEST
+
 #include <camellia/camellia.h>
 #include <camellia/err/err.h>
 #include <camellia/test/test.h>
 #include <camellia/type/string.h>
 
 cam_test_result_t main(void) {
-  cam_test_start();
-
   cam_cptr_t string = "Something.";
 
   // Match

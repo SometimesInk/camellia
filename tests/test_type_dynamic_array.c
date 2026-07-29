@@ -1,3 +1,5 @@
+#define CAM_TEST
+
 #include <camellia/camellia.h>
 #include <camellia/err/err.h>
 #include <camellia/test/test.h>
@@ -15,8 +17,6 @@ cam_type_dyn_arr_t arr;
   } while (0)
 
 cam_test_result_t main(void) {
-  cam_test_start();
-
   // Create
   CAM_TEST_ASSERT_SUCCESS(cam_type_create_dyn_arr(&arr, sizeof(int), 3));
   printf("Created array.\n");

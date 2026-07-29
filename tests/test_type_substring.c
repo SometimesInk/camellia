@@ -1,3 +1,5 @@
+#define CAM_TEST
+
 #include <camellia/camellia.h>
 #include <camellia/err/err.h>
 #include <camellia/test/test.h>
@@ -27,8 +29,6 @@ cam_str_t substring6;
   } while (0);
 
 cam_test_result_t main(void) {
-  cam_test_start();
-
   //                   0123456789
   cam_cptr_t string = "Something.";
   printf("String: %s\n", string);

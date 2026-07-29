@@ -36,4 +36,10 @@ extern cam_str_t cam_create_str(const cam_cptr_t cptr);
 
 extern cam_str_t cam_cp_str(const cam_str_t str);
 
+#ifdef CAM_TEST
+#define CAM_STATIC
+#else
+#define CAM_STATIC static
+#endif
+
 #endif /* CAMELLIA__CAMELLIA_H__ */
