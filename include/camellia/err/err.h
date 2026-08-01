@@ -20,6 +20,10 @@ extern cam_str_t cam_err_to_string[CAM_ERR_LEN];
  */
 extern cam_err_t cam_err_prerr;
 
+/**
+ * @brief Sets `cam_err_prerr` to the given error. See function specific
+ * documentation for error signature.
+ */
 extern void cam_err_set(cam_err_t err);
 
 extern cam_err_t cam_err_get();

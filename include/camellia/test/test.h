@@ -15,17 +15,6 @@ typedef cam_out_t cam_test_result_t;
  */
 #define CAM_TEST_SUCCESS ((cam_test_result_t)EXIT_SUCCESS)
 
-/**
- * @deprecated Prefer defining CAM_TEST rather than using cam_test_start &
- * cam_test_stop.
- */
-#define cam_test_start()
-
-/**
- * @deprecated See cam_test_start();
- */
-#define cam_test_stop()
-
 #define CAM_TEST_RETURN(v)                                                     \
   do {                                                                         \
     return (v);                                                                \
@@ -83,6 +72,9 @@ typedef cam_out_t cam_test_result_t;
     CAM_TEST_ASSERT((expr) != CAM_NULL);                                       \
   } while (0)
 
+/**
+ * @brief Ensures `expr` string is null terminated within `capacity` characters.
+ */
 #define CAM_TEST_ASSERT_NULL_TERMINATED(expr, capacity)                        \
   do {                                                                         \
     cam_size_t n__ = strnlen((expr), (capacity));                              \
