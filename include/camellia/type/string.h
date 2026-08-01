@@ -16,4 +16,20 @@ extern cam_out_t cam_type_substring(cam_str_t *sub, const cam_cptr_t str,
 // TODO: Add more rigorous range checks
 extern cam_out_t cam_type_str_match(cam_cptr_t a, cam_cptr_t b, cam_size_t n);
 
+/**
+ * @brief Checks if the current character is a digit.
+ */
+extern cam_out_t cam_type_is_digit(char c);
+
+/**
+ * @brief Checks if the current character is a letter of the alphabet or an
+ * underscore.
+ */
+extern cam_out_t cam_type_is_alpha(char c);
+
+/**
+ * @brief Checks if the current character is alphanumeric or an underscore.
+ */
+extern cam_out_t cam_type_is_alphanumeric(char c);
+
 #endif /* CAMELLIA__TYPE_STRING_H__ */

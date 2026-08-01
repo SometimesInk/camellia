@@ -23,3 +23,15 @@ cam_out_t cam_type_str_match(cam_cptr_t a, cam_cptr_t b, cam_size_t n) {
   }
   CAM_ERR_RETURN_SUCCESS();
 }
+
+// Allow me to record an funny occurence (it may only be called funny because it
+// took me a mere hour to uncover): forgot to write the single quotes...
+cam_out_t cam_type_is_digit(char c) { return '0' <= c && c <= '9'; }
+
+cam_out_t cam_type_is_alpha(char c) {
+  return 'a' <= c && c <= 'z' || 'A' <= c && c <= 'Z' || c == '_';
+}
+
+cam_out_t cam_type_is_alphanumeric(char c) {
+  return cam_type_is_digit(c) || cam_type_is_alpha(c);
+};
