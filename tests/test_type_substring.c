@@ -29,6 +29,7 @@ cam_str_t substring6;
   } while (0);
 
 cam_test_result_t main(void) {
+  // TODO: strengthen test
   //                   0123456789
   cam_cptr_t string = "Something.";
   printf("String: %s\n", string);

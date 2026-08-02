@@ -17,8 +17,10 @@ cam_test_result_t main(void) {
   CAM_TEST_ASSERT(cam_type_is_digit('8'));
   CAM_TEST_ASSERT(cam_type_is_digit('9'));
 
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_digit('/'));
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_digit(':'));
+  // Check values barely out of range to ensure there are no subtle comparison
+  // errors.
+  CAM_TEST_ASSERT_FAILURE(cam_type_is_digit('0' - 1));
+  CAM_TEST_ASSERT_FAILURE(cam_type_is_digit('9' + 1));
 
   CAM_TEST_ASSERT_FAILURE(cam_type_is_digit('q'));
   CAM_TEST_ASSERT_FAILURE(cam_type_is_digit('w'));
@@ -39,10 +41,8 @@ cam_test_result_t main(void) {
   CAM_TEST_ASSERT(cam_type_is_alpha('Z'));
   CAM_TEST_ASSERT(cam_type_is_alpha('_'));
 
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('/'));
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha(':'));
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('0'));
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('1'));
+  CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('0' - 1));
+  CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('9' + 1));
   CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('0'));
   CAM_TEST_ASSERT_FAILURE(cam_type_is_alpha('1'));
 
@@ -59,10 +59,8 @@ cam_test_result_t main(void) {
   CAM_TEST_ASSERT(cam_type_is_alphanumeric('Z'));
   CAM_TEST_ASSERT(cam_type_is_alphanumeric('_'));
 
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_alphanumeric('/'));
-  CAM_TEST_ASSERT_FAILURE(cam_type_is_alphanumeric(':'));
-  CAM_TEST_ASSERT(cam_type_is_alphanumeric('0'));
-  CAM_TEST_ASSERT(cam_type_is_alphanumeric('1'));
+  CAM_TEST_ASSERT_FAILURE(cam_type_is_alphanumeric('0' - 1));
+  CAM_TEST_ASSERT_FAILURE(cam_type_is_alphanumeric('9' + 1));
   CAM_TEST_ASSERT(cam_type_is_alphanumeric('0'));
   CAM_TEST_ASSERT(cam_type_is_alphanumeric('1'));
 

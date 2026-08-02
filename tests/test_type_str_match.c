@@ -6,6 +6,7 @@
 #include <camellia/type/string.h>
 
 cam_test_result_t main(void) {
+  // TODO: strengthen test
   cam_cptr_t string = "Something.";
 
   // Match
