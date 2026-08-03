@@ -35,7 +35,16 @@ extern cam_out_t cam_type_create_arena(cam_type_arena_t *arena,
 extern void cam_type_free_arena(cam_type_arena_t *arena);
 
 /**
- * @brief Copies `size` bytes from `value` to the top of the arena.
+ * @brief Gives a pointer to the next memory block in the arena.
+ * @param size Maximum number of bytes to send over.
+ * @throws CAM_ERR_NULL_PTR When arena or arena buffer is null.
+ * @throws CAM_ERR_MEM_ALLOC Failed to resize memory using realloc.
+ */
+extern void *cam_type_alloc_arena(cam_type_arena_t *arena, const void *value,
+                                  const cam_size_t size);
+
+/**
+ * @brief Puts `value` at the end of an arena.
  * @param size Maximum number of bytes to send over.
  * @throws CAM_ERR_NULL_PTR When arena or arena buffer is null.
  * @throws CAM_ERR_MEM_ALLOC Failed to resize memory using realloc.

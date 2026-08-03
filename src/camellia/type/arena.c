@@ -36,23 +36,38 @@ void cam_type_free_arena(cam_type_arena_t *arena) {
   arena->owned_size = 0;
 }
 
-cam_out_t cam_type_push_arena(cam_type_arena_t *arena, const void *value,
-                              const cam_size_t size) {
+void *cam_type_alloc_arena(cam_type_arena_t *arena, const void *value,
+                           const cam_size_t size) {
   if (arena == CAM_NULL || arena->buf == CAM_NULL) {
     cam_err_set(CAM_ERR_NULL_PTR);
-    return CAM_FAILURE;
+    return CAM_NULL;
   }
 
-  if (arena->offset + size > arena->owned_size) {
-    // Resize through geometric expansion
-    arena->owned_size *= 2;
-    arena->buf = realloc(arena->buf, arena->owned_size);
-    if (arena->buf == CAM_NULL) {
-      cam_err_set(CAM_ERR_MEM_ALLOC);
-      return CAM_FAILURE;
-    }
-  }
+  // TODO: Align pointer
+  void *ptr = arena->buf + arena->offset;
+
   arena->offset += size;
+  if (arena->offset < arena->owned_size) {
+    cam_err_set(CAM_ERR_SUCCESS);
+    return ptr;
+  }
+
+  // Resize through geometric expansion since it is more efficient
+  arena->owned_size *= 2;
+  arena->buf = realloc(arena->buf, arena->owned_size);
+  if (arena->buf == CAM_NULL) {
+    cam_err_set(CAM_ERR_MEM_ALLOC);
+    return CAM_NULL;
+  }
+
+  return ptr;
+}
+
+cam_out_t cam_type_push_arena(cam_type_arena_t *arena, const void *value,
+                              const cam_size_t size) {
+  void *ptr = cam_type_alloc_arena(arena, value, size);
+  if (ptr == CAM_NULL)
+    return CAM_FAILURE;
 
   (void)memcpy(arena->buf + arena->offset, value, size);
 
