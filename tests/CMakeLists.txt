@@ -1,5 +1,8 @@
-set(UNIT_TEST_SOURCES test_type_dynamic_array.c test_type_str_match.c
-                      test_type_substring.c test_type_is_digit_alpha_alphanumeric.c)
+set(UNIT_TEST_SOURCES test_type_dynamic_array.c
+                      test_type_arena.c
+                      test_type_str_match.c
+                      test_type_substring.c
+                      test_type_is_digit_alpha_alphanumeric.c)
 
 foreach(test_src ${UNIT_TEST_SOURCES})
   get_filename_component(test_name ${test_src} NAME_WE)
