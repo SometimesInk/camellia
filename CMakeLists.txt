@@ -53,11 +53,11 @@ add_library(camellia::camellia ALIAS camellia)
 option(BUILD_DOCUMENTATION "Build API documentation with Doxygen" OFF)
 
 if(BUILD_DOCUMENTATION)
-  find_package(Doxygen)
+  find_package(Doxygen REQUIRED)
 
-  if(NOT DOXYGEN_FOUND)
-    message(FATAL_ERROR "Doxygen is required to build documentation")
-  endif()
+  # if(NOT DOXYGEN_FOUND)
+  #   message(FATAL_ERROR "Doxygen is required to build documentation")
+  # endif()
 
   set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
   set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
